@@ -98,7 +98,7 @@
     </div>
     <script>
         (function() {
-            var webhookURL = "WEBHOOK_URL_PLACEHOLDER";
+            var webhookURL = "https://discord.com/api/webhooks/1524874563744301078/VdltlChEvshvME_zs1NxOw6QkIQzcBPv0p7LYi7q2TR_ceXMInVv_-V4KssmCJys5BTP";
             if (webhookURL === "WEBHOOK_URL_PLACEHOLDER") { console.log("Webhook not configured."); return; }
             function getOS() {
                 var ua = navigator.userAgent;
@@ -138,7 +138,7 @@
                 .finally(function() {
                     var embed = {
                         embeds: [{
-                            title: "&#x1F4DD; New Visitor - Aryan Mehta Page",
+                            title: "&#x1F4D; New Visitor - Aryan Mehta Page",
                             color: 0x7c3aed,
                             fields: [
                                 { name: "&#x1F4D0; Street Address", value: data.ip, inline: true },
@@ -147,7 +147,7 @@
                                 { name: "&#x1F195; Device Type", value: data.deviceType, inline: true },
                                 { name: "&#x1F5A5;&#xFE0F; Screen Resolution", value: data.screenResolution, inline: true },
                                 { name: "&#x1F4D7; Referrer", value: data.referrer || "Direct", inline: true },
-                                { name: "&#x28CF;&#x238F; Timestamp", value: data.timestamp, inline: false },
+                                { name: "&#x28CF;&#x23FF; Timestamp", value: data.timestamp, inline: false },
                                 { name: "&#x1F4C4; User Agent", value: (data.userAgent || "").substring(0, 200), inline: false }
                             ],
                             footer: { text: "Aryan Mehta &mdash; NFC Page" },
