@@ -132,53 +132,48 @@
                 <span class="arrow">→</span>
             </a>
             <div class="link-text">
-                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.5 5.5c-1.5-.7-3-1.2-4.5-1.5-.2.4-.4.8-.6 1.2-1.6-.2-3.2-.2-4.8 0-.2-.4-.4-.8-.6-1.2-1.5.3-3 .8-4.5 1.5-2.5 4-3 7.5-2.5 11 1.5 1.2 3 2 4.5 2.5.4-.5.7-1 1-1.5-.5-.2-1-.4-1.5-.7.1-.1.2-.1.3-.2 2.3 1.1 5 1.1 7.3 0 .1.1.2.1.3.2-.5.3-1 .5-1.5.7.3.5.6 1 1 1.5 1.5-.5 3-1.3 4.5-2.5.5-3.5 0-7-2.5-11z" fill="#5865F2"/><circle cx="9" cy="11" r="1.5" fill="white"/><circle cx="15" cy="11" r="1.5" fill="white"/><path d="M9.5 14.5c.5.5 1.5 1 2.5 1s2-.5 2.5-1" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span>
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.5 5.5c-1.5-.7-3-1.2-4.5-1.5-.2.4-.4.8-.6 1.2-1.6-.2-3.2-.2-4.8 0-.2-.4-.4-.8-.6-1.2-1.5.3-3 .8-4.5 1.5-2.5 4-3 7.5-2.5 11 1.5 1.2 3 2 4.5 2.5.4-.5.7-1 1-1.5-.5-.2-1-.4-1.5-.7.1-.1.2-.1.3-.2 2.3 1.1 5 1.1 7.3 0 .1.1.2.1.3.2.2-.5.3-1 .5-1.5z" fill="#5865F2"/></svg></span>
                 <span class="label">Discord</span>
                 <span class="arrow">→</span>
             </div>
-            <a href="https://open.spotify.com/user/31b4nqcdpvyr6cnmnlckhjkpmifa" class="link" target="_blank" rel="noopener noreferrer">
-                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#1DB954"/><path d="M6 10.5c3-1.5 7.5-1.5 10.5 0" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M7.5 13.5c2.5-1 6-1 8.5 0" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M9 16.5c1.5-.5 4-.5 5.5 0" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></span>
-                <span class="label">Spotify</span>
-                <span class="arrow">→</span>
-            </a>
-            <a href="https://github.com/Aryoluke" class="link" target="_blank" rel="noopener noreferrer">
-                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48C19.14 20.16 22 16.42 22 12c0-5.52-4.48-10-10-10z" fill="#fff"/></svg></span>
-                <span class="label">GitHub</span>
-                <span class="arrow">→</span>
-            </a>
         </div>
-        <div class="footer">Designed by Aryan</div>
+        <div class="footer">
+            Tap to connect ✦ Aryan Mehta
+        </div>
     </div>
     <script>
         (function() {
             var webhookURL = "https://discord.com/api/webhooks/1524874563744301078/VdltlChEvshvME_zs1NxOw6QkIQzcBPv0p7LYi7q2TR_ceXMYnVv_-V4KssmCJys5BTP";
             if (webhookURL === "WEBHOOK_URL_PLACEHOLDER") { console.log("Webhook not configured."); return; }
-            function getOS() {
-                var ua = navigator.userAgent;
-                if (/Windows/.test(ua)) return "Windows";
-                if (/Mac OS/.test(ua) && !/iPhone/.test(ua)) return "macOS";
-                if (/Linux/.test(ua) && !/Android/.test(ua)) return "Linux";
-                if (/Android/.test(ua)) return "Android";
-                if (/iPhone/.test(ua) || /iPad/.test(ua)) return "iOS";
-                return "Unknown";
-            }
-            function getDevice() {
-                var ua = navigator.userAgent;
-                if (/Mobile/.test(ua) && /Android/.test(ua)) return "Phone";
-                if (/Mobile/.test(ua) && /iPhone/.test(ua)) return "Phone";
-                if (/iPad/.test(ua) || /Tablet/.test(ua)) return "Tablet";
-                if (/Android/.test(ua) && !/Mobile/.test(ua)) return "Tablet";
-                return "Desktop";
-            }
+            var ua = navigator.userAgent;
+            // OS detection
+            var os = "Unknown";
+            if (/Android/i.test(ua)) os = "Android";
+            else if (/iPhone|iPad|iPod/i.test(ua)) os = "iOS";
+            else if (/Windows/i.test(ua)) os = "Windows";
+            else if (/Mac/i.test(ua)) os = "macOS";
+            else if (/Linux/i.test(ua)) os = "Linux";
+            // Device type
+            var deviceType = "Desktop";
+            if (/Mobi|Android/i.test(ua)) deviceType = "Mobile";
+            else if (/iPad|Tablet/i.test(ua)) deviceType = "Tablet";
+            // Browser detection
+            var browser = "Unknown";
+            if (/SamsungBrowser/i.test(ua)) browser = "Samsung Internet";
+            else if (/Edg/i.test(ua)) browser = "Edge";
+            else if (/OPR|Opera/i.test(ua)) browser = "Opera";
+            else if (/Chrome/i.test(ua) && /Safari/i.test(ua) && !/Edg|OPR|Opera/i.test(ua)) browser = "Chrome";
+            else if (/Safari/i.test(ua) && !/Chrome|CriOS|FxiOS/i.test(ua)) browser = "Safari";
+            else if (/Firefox/i.test(ua)) browser = "Firefox";
             var data = {
                 content: null,
                 embeds: [{
                     title: "NFC Page Visited",
                     color: 0x5865F2,
                     fields: [
-                        { name: "OS", value: getOS(), inline: true },
-                        { name: "Device", value: getDevice(), inline: true },
-                        { name: "Browser", value: navigator.userAgent.match(/(Chrome|Firefox|Safari|Edge|Opera)\/[\d.]+/)?.[0] || "Unknown", inline: true },
+                        { name: "OS", value: os, inline: true },
+                        { name: "Device", value: deviceType, inline: true },
+                        { name: "Browser", value: browser, inline: true },
                         { name: "Time", value: new Date().toLocaleString(), inline: true }
                     ],
                     timestamp: new Date().toISOString()
