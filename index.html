@@ -4,97 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aryan Mehta</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: #0a0a0a;
-            color: #e0e0e0;
+            color: #ffffff;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             padding: 20px;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
         }
-        .container { max-width: 420px; width: 100%; animation: fadeIn 1s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .profile { text-align: center; margin-bottom: 32px; }
-        .avatar {
-            width: 96px; height: 96px; border-radius: 50%;
-            background: linear-gradient(135deg, #7c3aed, #3b82f6);
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 16px; font-size: 36px; font-weight: 700; color: #fff;
-            box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
-            animation: pulse 3s ease-in-out infinite;
+        .container {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px 0;
         }
-        @keyframes pulse { 0%, 100% { box-shadow: 0 0 30px rgba(124, 58, 237, 0.3); } 50% { box-shadow: 0 0 50px rgba(124, 58, 237, 0.6); } }
-        .name { font-size: 24px; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
-        .bio { font-size: 14px; color: #888; margin-bottom: 24px; }
-        .links { display: flex; flex-direction: column; gap: 12px; }
-        .link {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 14px 20px; background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;
-            text-decoration: none; color: #e0e0e0; font-size: 15px;
-            transition: all 0.3s ease; backdrop-filter: blur(10px);
-        }
-        .link:hover {
-            background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12);
-            transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-        .link .icon,
-        .link-text .icon {
-            font-size: 20px;
-            width: 28px;
+        .profile {
             text-align: center;
-            margin-right: 12px;
+            margin-bottom: 30px;
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .bio {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .link, .link-text {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+        .link:hover, .link-text:hover {
+            background: #252525;
+        }
+        .link .icon-wrap, .link-text .icon-wrap {
+            width: 28px;
+            height: 28px;
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .link .icon i,
-        .link-text .icon i {
-            font-size: 20px;
-            vertical-align: middle;
+        .link .icon-wrap svg, .link-text .icon-wrap svg {
+            width: 24px;
+            height: 24px;
         }
-        .link .label { flex: 1; }
-        .link .arrow { color: #999; font-size: 14px; transition: transform 0.3s ease, color 0.3s ease; }
-        .link:hover .arrow { transform: translateX(4px); color: #ccc; }
-        .link-text {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 14px 20px; background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;
-            color: #e0e0e0; font-size: 15px; cursor: default; backdrop-filter: blur(10px);
+        .link .label, .link-text .label {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 500;
         }
-        .link-text .icon { font-size: 20px; width: 28px; text-align: center; margin-right: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-        .link-text .icon i { font-size: 20px; vertical-align: middle; }
-        .link-text .label { flex: 1; }
-        .footer { text-align: center; margin-top: 32px; font-size: 12px; color: #444; }
-        @media (max-width: 480px) { body { padding: 16px; } .link { padding: 12px 16px; font-size: 14px; } .link-text { padding: 12px 16px; font-size: 14px; } }
+        .link .arrow, .link-text .arrow {
+            font-size: 16px;
+            color: #666;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            font-size: 12px;
+            color: #444;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="profile">
-            <div class="avatar">AM</div>
-            <h1 class="name">Aryan Mehta</h1>
-            <p class="bio">Content Creator</p>
+            <img src="https://i.imgur.com/lKiNVDj.jpeg" alt="Aryan Mehta" class="avatar">
+            <div class="name">Aryan Mehta</div>
+            <div class="bio">@aryoluke — everything tech & creative</div>
         </div>
         <div class="links">
-            <a href="https://www.instagram.com/aryoluke" class="link" target="_blank" rel="noopener noreferrer"><span class="icon"><i class="fa-brands fa-instagram" style="color:#E1306C"></i></span><span class="label">@aryoluke</span><span class="arrow">&#x2192;</span></a>
-            <a href="https://www.tiktok.com/@aryoluke" class="link" target="_blank" rel="noopener noreferrer"><span class="icon"><i class="fa-brands fa-tiktok" style="color:#ffffff"></i></span><span class="label">@aryoluke</span><span class="arrow">&#x2192;</span></a>
-            <a href="https://www.youtube.com/@aryoluke" class="link" target="_blank" rel="noopener noreferrer"><span class="icon"><i class="fa-brands fa-youtube" style="color:#FF0000"></i></span><span class="label">@aryoluke</span><span class="arrow">&#x2192;</span></a>
-            <a href="https://www.youtube.com/@HowToWithAryan" class="link" target="_blank" rel="noopener noreferrer"><span class="icon"><i class="fa-brands fa-youtube" style="color:#FF0000"></i></span><span class="label">How To with Aryan</span><span class="arrow">&#x2192;</span></a>
-            <a href="https://www.reddit.com/user/Aryoluke" class="link" target="_blank" rel="noopener noreferrer"><span class="icon"><i class="fa-brands fa-reddit-alien" style="color:#FF4500"></i></span><span class="label">u/Aryoluke</span><span class="arrow">&#x2192;</span></a>
-            <a href="https://snapchat.com/add/aryanmehta0710" class="link" target="_blank" rel="noopener noreferrer"><span class="icon"><i class="fa-brands fa-snapchat" style="color:#FFFC00; text-shadow: 0 0 2px rgba(0,0,0,0.5);"></i></span><span class="label">aryanmehta0710</span><span class="arrow">&#x2192;</span></a>
-            <div class="link-text"><span class="icon"><i class="fa-brands fa-discord" style="color:#5865F2"></i></span><span class="label">aryoluke_</span><span class="arrow" style="visibility:hidden;">&#x2192;</span></div>
-            <a href="https://open.spotify.com" class="link" target="_blank" rel="noopener noreferrer"><span class="icon"><i class="fa-brands fa-spotify" style="color:#1DB954"></i></span><span class="label">Aryan Jigar Mehta</span><span class="arrow">&#x2192;</span></a>
-            <a href="https://github.com/Aryoluke" class="link" target="_blank" rel="noopener noreferrer"><span class="icon"><i class="fa-brands fa-github" style="color:#ffffff"></i></span><span class="label">@Aryoluke</span><span class="arrow">&#x2192;</span></a>
+            <a href="https://www.instagram.com/aryoluke" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#E1306C" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="5" stroke="#E1306C" stroke-width="1.5" fill="none"/><circle cx="17.5" cy="6.5" r="1.5" fill="#E1306C"/></svg></span>
+                <span class="label">Instagram</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="https://www.tiktok.com/@aryoluke" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.59 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.66a8.28 8.28 0 0 0 4.13 1.35v-3.5a4.73 4.73 0 0 1-.81.18z" fill="#fff"/></svg></span>
+                <span class="label">TikTok</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="https://www.youtube.com/@aryoluke" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="4" fill="#FF0000"/><polygon points="10,8 16,12 10,16" fill="white"/></svg></span>
+                <span class="label">YouTube</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="https://www.youtube.com/@HowToWithAryan" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="4" fill="#FF0000"/><polygon points="10,8 16,12 10,16" fill="white"/></svg></span>
+                <span class="label">How To with Aryan</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="https://www.reddit.com/user/Aryoluke" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#FF4500"/><circle cx="8" cy="11" r="2" fill="white"/><circle cx="16" cy="11" r="2" fill="white"/><path d="M12 15c-1.5 0-2.5.5-3 1.5s1 1.5 3 1.5 3.5-.5 3-1.5-1.5-1.5-3-1.5z" fill="white"/><circle cx="12" cy="9" r="1.5" fill="white"/><path d="M12 13c-1 0-2-.2-3-.6l.6-1.8c1 .4 2 .6 3 .6s2-.2 3-.6l.6 1.8c-1 .4-2 .6-3 .6z" fill="white" opacity="0.3"/></svg></span>
+                <span class="label">Reddit</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="https://www.snapchat.com/add/aryanmehta0710" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.5 2 5.5 3.5 4 6c-.5 1-.5 2 0 3-.2 3 1 5.5 3 7.5.5.5 1.5 1 2.5 1.5.5.2 1 .5 1.5 1 .2.3.3.7.5 1 .1.3.3.5.5.5s.4-.2.5-.5c.2-.3.3-.7.5-1 .5-.5 1-.8 1.5-1 1-.5 2-1 2.5-1.5 2-2 3.2-4.5 3-7.5.5-1 .5-2 0-3-1.5-2.5-4.5-4-8-4z" fill="#FFFC00" stroke="#000" stroke-width="0.5"/></svg></span>
+                <span class="label">Snapchat</span>
+                <span class="arrow">→</span>
+            </a>
+            <div class="link-text">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.5 5.5c-1.5-.7-3-1.2-4.5-1.5-.2.4-.4.8-.6 1.2-1.6-.2-3.2-.2-4.8 0-.2-.4-.4-.8-.6-1.2-1.5.3-3 .8-4.5 1.5-2.5 4-3 7.5-2.5 11 1.5 1.2 3 2 4.5 2.5.4-.5.7-1 1-1.5-.5-.2-1-.4-1.5-.7.1-.1.2-.1.3-.2 2.3 1.1 5 1.1 7.3 0 .1.1.2.1.3.2-.5.3-1 .5-1.5.7.3.5.6 1 1 1.5 1.5-.5 3-1.3 4.5-2.5.5-3.5 0-7-2.5-11z" fill="#5865F2"/><circle cx="9" cy="11" r="1.5" fill="white"/><circle cx="15" cy="11" r="1.5" fill="white"/><path d="M9.5 14.5c.5.5 1.5 1 2.5 1s2-.5 2.5-1" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span>
+                <span class="label">Discord</span>
+                <span class="arrow">→</span>
+            </div>
+            <a href="https://open.spotify.com/user/31b4nqcdpvyr6cnmnlckhjkpmifa" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#1DB954"/><path d="M6 10.5c3-1.5 7.5-1.5 10.5 0" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M7.5 13.5c2.5-1 6-1 8.5 0" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M9 16.5c1.5-.5 4-.5 5.5 0" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></span>
+                <span class="label">Spotify</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="https://github.com/Aryoluke" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48C19.14 20.16 22 16.42 22 12c0-5.52-4.48-10-10-10z" fill="#fff"/></svg></span>
+                <span class="label">GitHub</span>
+                <span class="arrow">→</span>
+            </a>
         </div>
-        <div class="footer">&copy; 2026 Aryan Mehta</div>
+        <div class="footer">Designed by Aryan</div>
     </div>
     <script>
         (function() {
@@ -106,60 +159,36 @@
                 if (/Mac OS/.test(ua) && !/iPhone/.test(ua)) return "macOS";
                 if (/Linux/.test(ua) && !/Android/.test(ua)) return "Linux";
                 if (/Android/.test(ua)) return "Android";
-                if (/iPhone|iPad|iPod/.test(ua)) return "iOS";
+                if (/iPhone/.test(ua) || /iPad/.test(ua)) return "iOS";
                 return "Unknown";
             }
-            function getDeviceType() {
-                return /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent) ? "Mobile" : "Desktop";
-            }
-            function getBrowser() {
+            function getDevice() {
                 var ua = navigator.userAgent;
-                if (/Edg/.test(ua)) return "Edge";
-                if (/Chrome/.test(ua)) return "Chrome";
-                if (/Firefox/.test(ua)) return "Firefox";
-                if (/Safari/.test(ua) && !/Chrome/.test(ua)) return "Safari";
-                if (/Opera|OPR/.test(ua)) return "Opera";
-                return "Unknown";
+                if (/Mobile/.test(ua) && /Android/.test(ua)) return "Phone";
+                if (/Mobile/.test(ua) && /iPhone/.test(ua)) return "Phone";
+                if (/iPad/.test(ua) || /Tablet/.test(ua)) return "Tablet";
+                if (/Android/.test(ua) && !/Mobile/.test(ua)) return "Tablet";
+                return "Desktop";
             }
             var data = {
-                ip: "Unknown",
-                browser: getBrowser(),
-                os: getOS(),
-                deviceType: getDeviceType(),
-                screenResolution: screen.width + "x" + screen.height,
-                referrer: document.referrer || "Direct",
-                timestamp: new Date().toISOString(),
-                userAgent: navigator.userAgent
+                content: null,
+                embeds: [{
+                    title: "NFC Page Visited",
+                    color: 0x5865F2,
+                    fields: [
+                        { name: "OS", value: getOS(), inline: true },
+                        { name: "Device", value: getDevice(), inline: true },
+                        { name: "Browser", value: navigator.userAgent.match(/(Chrome|Firefox|Safari|Edge|Opera)\/[\d.]+/)?.[0] || "Unknown", inline: true },
+                        { name: "Time", value: new Date().toLocaleString(), inline: true }
+                    ],
+                    timestamp: new Date().toISOString()
+                }]
             };
-            fetch("https://api.ipify.org/format?json")
-                .then(function(r) { return r.json(); })
-                .then(function(ipData) { data.ip = ipData.ip; })
-                .catch(function() { data.ip = "Unavailable"; })
-                .finally(function() {
-                    var embed = {
-                        embeds: [{
-                            title: "&#x1F4D; New Visitor - Aryan Mehta Page",
-                            color: 0x7c3aed,
-                            fields: [
-                                { name: "&#x1F4D0; Street Address", value: data.ip, inline: true },
-                                { name: "&#x1F48D; Browser", value: data.browser, inline: true },
-                                { name: "&#x1F7E7; OS", value: data.os, inline: true },
-                                { name: "&#x1F195; Device Type", value: data.deviceType, inline: true },
-                                { name: "&#x1F5A5;&#xFE0F; Screen Resolution", value: data.screenResolution, inline: true },
-                                { name: "&#x1F4D7; Referrer", value: data.referrer || "Direct", inline: true },
-                                { name: "&#x28CF;&#x23FF; Timestamp", value: data.timestamp, inline: false },
-                                { name: "&#x1F4C4; User Agent", value: (data.userAgent || "").substring(0, 200), inline: false }
-                            ],
-                            footer: { text: "Aryan Mehta &mdash; NFC Page" },
-                            timestamp: data.timestamp
-                        }]
-                    };
-                    fetch(webhookURL, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(embed)
-                    }).catch(function(err) { console.error("Webhook error:", err); });
-                })();
+            fetch(webhookURL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            }).catch(function(e) { console.log("Webhook error:", e); });
         })();
     </script>
 </body>
