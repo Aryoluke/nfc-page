@@ -18,6 +18,31 @@
             justify-content: center;
             padding: 20px;
             background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Gradient Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FF6B35, #FF4081, #7B2D8B, #FF6B35);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
         }
         
         .container {
@@ -39,7 +64,6 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeInUp 0.6s ease forwards;
             opacity: 0;
-            position: relative;
         }
         
         .glass-card:hover {
@@ -84,7 +108,13 @@
             margin-bottom: 16px;
             border: 3px solid #FF6B35;
             box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
-            cursor: pointer;
+            animation: pulseGlow 2s infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 5px #FF6B35; }
+            50% { box-shadow: 0 0 20px #FF6B35; }
+            100% { box-shadow: 0 0 5px #FF6B35; }
         }
         
         .name {
@@ -170,7 +200,6 @@
             color: #ffffff;
             font-size: 14px;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
         
         .contact-pill:hover {
@@ -304,6 +333,23 @@
         .social-link:nth-child(11) { animation-delay: 0.65s; }
         .social-link:nth-child(12) { animation-delay: 0.7s; }
         
+        /* Canvas for particles - fixed fullscreen */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* Ensure content is above particles */
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+        
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -336,106 +382,16 @@
                 padding: 14px 16px;
             }
         }
-        
-        /* --- NEW: Toast --- */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(80px);
-            background: rgba(0, 0, 0, 0.9);
-            color: #fff;
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 500;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            z-index: 9999;
-            white-space: nowrap;
-        }
-        
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-        
-        /* --- NEW: Share Button --- */
-        .share-btn {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            color: #fff;
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            line-height: 1.4;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-        }
-        
-        .share-btn:hover {
-            background: rgba(255, 255, 255, 0.22);
-            border-color: rgba(255, 255, 255, 0.35);
-        }
-        
-        /* --- NEW: Ripple --- */
-        .ripple {
-            position: fixed;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            pointer-events: none;
-            transform: scale(0);
-            animation: ripple-anim 0.6s ease-out forwards;
-            z-index: 9998;
-        }
-        
-        @keyframes ripple-anim {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-        
-        /* --- NEW: Confetti --- */
-        .confetti-piece {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            border-radius: 2px;
-            pointer-events: none;
-            z-index: 10000;
-            animation: confetti-fly 1s ease-out forwards;
-        }
-        
-        @keyframes confetti-fly {
-            0% {
-                opacity: 1;
-                transform: translate(0, 0) rotate(0deg) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(var(--dx), var(--dy)) rotate(var(--dr)) scale(0.3);
-            }
-        }
     </style>
 </head>
 <body>
+    <canvas id="particles"></canvas>
     <div class="container">
         <!-- Profile Card -->
         <div class="glass-card profile">
-            <!-- Share Button -->
-            <button class="share-btn" id="share-btn" aria-label="Share">↗ Share</button>
-            
             <!-- AM Monogram -->
             <div class="am-monogram">AM</div>
-            <img class="avatar profile-img" src="20260706_192836.jpg" alt="Aryan Mehta">
+            <img class="avatar" src="20260706_192836.jpg" alt="Aryan Mehta">
             <div class="name">Aryan Mehta</div>
             <div class="subtitle-row">
                 <span class="subtitle">Content Creator</span>
@@ -448,93 +404,90 @@
             
             <!-- Contact Info -->
             <div class="contact-section">
-                <div class="contact-pill" id="copy-email" data-copy="aryanjiyar.jmehta@gmail.com">
-                    <span class="label">📧 aryanjiyar.jmehta@gmail.com</span>
-                    <span class="arrow">→</span>
-                </div>
-                <div class="contact-pill" id="copy-phone" data-copy="+44 7777 940152">
-                    <span class="label">📞 +44 7777 940152</span>
-                    <span class="arrow">→</span>
-                </div>
+                <a class="contact-pill" href="mailto:aryanjigar.jmehta@gmail.com">
+                    <span class="label">&#x1f4e7; aryanjigar.jmehta@gmail.com</span>
+                    <span class="arrow">&#x2192;</span>
+                </a>
+                <a class="contact-pill" href="tel:+447777940152">
+                    <span class="label">&#x1f4de; +44 7777 940152</span>
+                    <span class="arrow">&#x2192;</span>
+                </a>
             </div>
             
             <!-- VCard Button -->
             <button class="vcard-btn" onclick="downloadVCard()">
-                📃 Save Contact
+                &#x1f4d3; Save Contact
             </button>
         </div>
         
         <!-- Social Links -->
         <div class="social-section">
             <a class="social-link" href="#instagram">
-                <span class="icon-wrap">📸</span>
+                <span class="icon-wrap">&#x1f4f8;</span>
                 <span class="label">Instagram</span>
-                <span class="arrow">→</span>
+                <span class="arrow">&#x2192;</span>
             </a>
             <a class="social-link" href="#tiktok">
-                <span class="icon-wrap">🎵</span>
+                <span class="icon-wrap">&#x1f475;</span>
                 <span class="label">TikTok</span>
-                <span class="arrow">→</span>
+                <span class="arrow">&#x2192;</span>
             </a>
             <a class="social-link" href="#youtube">
-                <span class="icon-wrap">▶️</span>
+                <span class="icon-wrap">&#x2966;&#xfe0f;</span>
                 <span class="label">YouTube</span>
-                <span class="arrow">→</span>
+                <span class="arrow">&#x2192;</span>
             </a>
             <a class="social-link" href="#howto">
-                <span class="icon-wrap">🌬</span>
+                <span class="icon-wrap">&#x1f4ac;</span>
                 <span class="label">How To with Aryan</span>
-                <span class="arrow">→</span>
+                <span class="arrow">&#x2192;</span>
             </a>
             <a class="social-link" href="#">
-                <span class="icon-wrap">🌮</span>
+                <span class="icon-wrap">&#x1f4ae;</span>
                 <span class="label">Twitch</span>
-                <span class="arrow">→</span>
+                <span class="arrow">&#x2192;</span>
             </a>
             <a class="social-link" href="#">
-                <span class="icon-wrap">💬</span>
+                <span class="icon-wrap">&#x1f4ac;</span>
                 <span class="label">Discord</span>
-                <span class="arrow">→</span>
+                <span class="arrow">&#x2192;</span>
             </a>
             <a class="social-link" href="#">
-                <span class="icon-wrap">🐦</span>
+                <span class="icon-wrap">&#x1f426;</span>
                 <span class="label">Twitter / X</span>
-                <span class="arrow">→</span>
+                <span class="arrow">&#x2192;</span>
             </a>
             <a class="social-link" href="#">
-                <span class="icon-wrap">👻</span>
+                <span class="icon-wrap">&#x1f47b;</span>
                 <span class="label">GitHub</span>
-                <span class="arrow">→</span>
+                <span class="arrow">&#x2192;</span>
             </a>
             <a class="social-link" href="#">
-                <span class="icon-wrap">🔗</span>
+                <span class="icon-wrap">&#x1f517;</span>
                 <span class="label">LinkedIn</span>
-                <span class="arrow">→</span>
+                <span class="arrow">&#x2192;</span>
             </a>
             <a class="social-link" href="#">
-                <span class="icon-wrap">👺</span>
+                <span class="icon-wrap">&#x1f4fa;</span>
                 <span class="label">Snapchat</span>
-                <span class="arrow">→</span>
+                <span class="arrow">&#x2192;</span>
             </a>
             <a class="social-link" href="#">
-                <span class="icon-wrap">🤑</span>
+                <span class="icon-wrap">&#x1f4f1;</span>
                 <span class="label">TikTok Shop</span>
-                <span class="arrow">→</span>
+                <span class="arrow">&#x2192;</span>
             </a>
             <a class="social-link" href="#">
-                <span class="icon-wrap">🎙️</span>
+                <span class="icon-wrap">&#x1f3b5;&#xfe0f;</span>
                 <span class="label">Spotify</span>
-                <span class="arrow">→</span>
+                <span class="arrow">&#x2192;</span>
             </a>
         </div>
         
         <div class="footer">
-            © 2026 Aryan Mehta
+            &copy; 2026 Aryan Mehta
         </div>
     </div>
-    
-    <!-- Toast element -->
-    <div class="toast" id="toast"></div>
     
     <script>
         // Live Clock - London time, updates every second
@@ -582,103 +535,90 @@
         }
         setInterval(rotateQuote, 5000);
         
-        // --- Toast helper ---
-        const toastEl = document.getElementById('toast');
-        let toastTimer = null;
-        function showToast(msg) {
-            toastEl.textContent = msg;
-            toastEl.classList.add('show');
-            if (toastTimer) clearTimeout(toastTimer);
-            toastTimer = setTimeout(function() {
-                toastEl.classList.remove('show');
-            }, 2000);
+        // Floating Particles
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100;
+                this.size = Math.random() * 4 + 2;
+                this.speed = Math.random() * 0.5 + 0.2;
+                this.hue = Math.floor(Math.random() * 40) + 15; // 15-55 range (orange/gold)
+                this.saturation = Math.floor(Math.random() * 30) + 60; // 60-90%
+                this.lightness = Math.floor(Math.random() * 20) + 50; // 50-70%
+                this.opacity = Math.random() * 0.2 + 0.3; // 0.3-0.5
+            }
+            update() {
+                this.y -= this.speed;
+                if (this.y < -10) {
+                    this.reset();
+                    this.y = canvas.height + Math.random() * 100;
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'hsla(' + this.hue + ', ' + this.saturation + '%, ' + this.lightness + '%, ' + this.opacity + ')';
+                ctx.fill();
+            }
         }
         
-        // --- 1. Copy to Clipboard ---
-        document.getElementById('copy-email').addEventListener('click', function(e) {
-            e.preventDefault();
-            navigator.clipboard.writeText('aryanjiyar.jmehta@gmail.com').then(function() {
-                showToast('Copied!');
-            });
-        });
+        for (let i = 0; i < 35; i++) {
+            const p = new Particle();
+            p.y = Math.random() * canvas.height;
+            particles.push(p);
+        }
         
-        document.getElementById('copy-phone').addEventListener('click', function(e) {
-            e.preventDefault();
-            navigator.clipboard.writeText('+44 7777 940152').then(function() {
-                showToast('Copied!');
-            });
-        });
-        
-        // --- 2. Share Button ---
-        document.getElementById('share-btn').addEventListener('click', function() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Aryan Mehta',
-                    url: window.location.href
-                }).catch(function() {
-                    // User cancelled or share failed — fallback
-                });
-            } else {
-                // Desktop fallback: copy link
-                navigator.clipboard.writeText(window.location.href).then(function() {
-                    showToast('Link copied!');
-                });
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (const p of particles) {
+                p.update();
+                p.draw();
             }
-        });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
         
-        // --- 3. Easter Egg (triple-click confetti) ---
-        let clickCount = 0;
-        let clickTimer = null;
-        document.querySelector('.profile-img').addEventListener('click', function(e) {
-            clickCount++;
-            if (clickTimer) clearTimeout(clickTimer);
-            clickTimer = setTimeout(function() {
-                clickCount = 0;
-            }, 1500);
+        // 3D Tilt on Glass Card
+        const card = document.querySelector('.glass-card');
+        if (card) {
+            let tiltRAF = null;
             
-            if (clickCount >= 3) {
-                clickCount = 0;
-                clearTimeout(clickTimer);
-                // Confetti burst at click position
-                const colors = ['orange', 'gold', 'white'];
-                for (let i = 0; i < 30; i++) {
-                    const piece = document.createElement('div');
-                    piece.className = 'confetti-piece';
-                    const color = colors[Math.floor(Math.random() * colors.length)];
-                    piece.style.background = color;
-                    piece.style.left = (e.clientX) + 'px';
-                    piece.style.top = (e.clientY) + 'px';
-                    const angle = Math.random() * 360;
-                    const dist = 60 + Math.random() * 100;
-                    const dx = Math.cos(angle * Math.PI / 180) * dist;
-                    const dy = Math.sin(angle * Math.PI / 180) * dist;
-                    const dr = (Math.random() - 0.5) * 720;
-                    piece.style.setProperty('--dx', dx + 'px');
-                    piece.style.setProperty('--dy', dy + 'px');
-                    piece.style.setProperty('--dr', dr + 'deg');
-                    document.body.appendChild(piece);
-                    setTimeout(function() {
-                        piece.remove();
-                    }, 1000);
-                }
-                showToast('🎉 You found it!');
-            }
-        });
-        
-        // --- 4. Tap Ripple ---
-        document.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            ripple.className = 'ripple';
-            const size = 40;
-            ripple.style.width = size + 'px';
-            ripple.style.height = size + 'px';
-            ripple.style.left = (e.clientX - size / 2) + 'px';
-            ripple.style.top = (e.clientY - size / 2) + 'px';
-            document.body.appendChild(ripple);
-            setTimeout(function() {
-                ripple.remove();
-            }, 600);
-        });
+            card.addEventListener('mousemove', function(e) {
+                if (tiltRAF) cancelAnimationFrame(tiltRAF);
+                tiltRAF = requestAnimationFrame(function() {
+                    const rect = card.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+                    const deltaX = e.clientX - centerX;
+                    const deltaY = e.clientY - centerY;
+                    const percentX = deltaX / (rect.width / 2);
+                    const percentY = deltaY / (rect.height / 2);
+                    const rotateY = percentX * 6;
+                    const rotateX = -percentY * 6;
+                    card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+                    tiltRAF = null;
+                });
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                if (tiltRAF) cancelAnimationFrame(tiltRAF);
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            });
+        }
     </script>
 </body>
 </html>
