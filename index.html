@@ -380,22 +380,22 @@
         
         <!-- Social Links -->
         <div class="social-section">
-            <a class="social-link" href="#instagram">
+            <a class="social-link" href="https://instagram.com/aryoluke" target="_blank">
                 <span class="icon-wrap">&#x1f4f8;</span>
                 <span class="label">Instagram</span>
                 <span class="arrow">&#x2192;</span>
             </a>
-            <a class="social-link" href="#tiktok">
+            <a class="social-link" href="https://tiktok.com/@aryoluke" target="_blank">
                 <span class="icon-wrap">&#x1f475;</span>
                 <span class="label">TikTok</span>
                 <span class="arrow">&#x2192;</span>
             </a>
-            <a class="social-link" href="#youtube">
+            <a class="social-link" href="https://youtube.com/@aryoluke" target="_blank">
                 <span class="icon-wrap">&#x2966;&#xfe0f;</span>
                 <span class="label">YouTube</span>
                 <span class="arrow">&#x2192;</span>
             </a>
-            <a class="social-link" href="#howto">
+            <a class="social-link" href="https://youtube.com/@HowToWithAryan" target="_blank">
                 <span class="icon-wrap">&#x1f4ac;</span>
                 <span class="label">How To with Aryan</span>
                 <span class="arrow">&#x2192;</span>
@@ -420,22 +420,22 @@
                 <span class="label">GitHub</span>
                 <span class="arrow">&#x2192;</span>
             </a>
-            <a class="social-link" href="#">
+            <a class="social-link" href="https://twitter.com/aryoluke" target="_blank">
                 <span class="icon-wrap">&#x1f517;</span>
                 <span class="label">LinkedIn</span>
                 <span class="arrow">&#x2192;</span>
             </a>
-            <a class="social-link" href="#">
+            <a class="social-link" href="https://github.com/Aryoluke" target="_blank">
                 <span class="icon-wrap">&#x1f4fa;</span>
                 <span class="label">Snapchat</span>
                 <span class="arrow">&#x2192;</span>
             </a>
-            <a class="social-link" href="#">
+            <a class="social-link" href="https://snapchat.com/add/aryanmehta0710" target="_blank">
                 <span class="icon-wrap">&#x1f4f1;</span>
                 <span class="label">TikTok Shop</span>
                 <span class="arrow">&#x2192;</span>
             </a>
-            <a class="social-link" href="#">
+            <a class="social-link" href="https://open.spotify.com/user/aryanjmehta" target="_blank">
                 <span class="icon-wrap">&#x1f3b5;&#xfe0f;</span>
                 <span class="label">Spotify</span>
                 <span class="arrow">&#x2192;</span>
@@ -488,7 +488,7 @@
                 const muscleUpDays = Math.ceil((muscleUpTarget - now) / (1000 * 60 * 60 * 24));
                 
                 document.getElementById('countdowns').innerHTML =
-                    'Year 10 in ' + year10Days + ' days<br>' +
+                    'Year 10 in ' + year10Days + ' days' +
                     'Muscle up in ' + muscleUpDays + ' days';
             }
             updateCountdowns();
@@ -657,7 +657,7 @@
         (function ss(){var s=document.createElement('div');s.className='shooting-star';s.style.left=Math.random()*85+'%';s.style.top=Math.random()*50+'%';s.style.animationDuration=(0.5+Math.random()*0.6)+'s';document.body.appendChild(s);setTimeout(function(){s.remove()},1500);setTimeout(ss,3500+Math.random()*5000)})();
         
         // Live Weather
-        fetch('https://api.open-meteo.com/v1/forecast?latitude=51.62&longitude=-0.32&current_weather=true').then(function(r){return r.json()}).then(function(d){var w=d.current_weather;var codes={0:'☀️',1:'🌤️',2:'🌤️',3:'🌤️',45:'🌫️',48:'🌫️',51:'🌦️',61:'🌦️',63:'🌦️',65:'🌦️',71:'❄️',73:'❄️',95:'⛈️',96:'⛈️',99:'⛈️'};var e=codes[w.weathercode]||'🌤️';document.getElementById('weather').textContent=e+' '+w.temperature+'°C · '+w.windspeed+' km/h'}).catch(function(){document.getElementById('weather').textContent='🌤️ --'});
+        fetch('https://api.open-meteo.com/v1/forecast?latitude=51.62&longitude=-0.32&current_weather=true').then(function(r){return r.json()}).then(function(d){var w=d.current_weather;var codes={0:'☀️',1:'🌤️',2:'🌤️',3:'🌤️',45:'🌫️',48:'🌫️',51:'🌦️',61:'🌦️',63:'🌦️',65:'🌦️',71:'❄️',73:'❄️',95:'⛈️',96:'⛈️',99:'⛈️'};var e=codes[w.weathercode]||'🌤️';document.getElementById('weather').textContent=e+' '+w.temperature+'°C · '+w.windspeed+' km/h'}).catch(function(){document.getElementById('weather').textContent='🌤️ --'})
     </script>
     
 <script>
