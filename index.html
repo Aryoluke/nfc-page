@@ -137,6 +137,22 @@
             color: rgba(255, 255, 255, 0.7);
         }
         
+        /* Typing cursor */
+        .cursor {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.7);
+            animation: blink 0.5s step-end infinite;
+            margin-left: 1px;
+            font-weight: 300;
+        }
+        .cursor.done {
+            animation: none;
+            opacity: 0;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        
         /* Status Dot */
         .status-dot {
             width: 8px;
@@ -164,6 +180,14 @@
             font-size: 13px;
             margin-top: 8px;
             transition: opacity 0.5s ease;
+        }
+        
+        /* Countdown Timers */
+        .countdowns {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 10px;
+            line-height: 1.6;
         }
         
         /* Live Clock */
@@ -395,17 +419,18 @@
             <img class="avatar" src="20260706_192836.jpg" alt="Aryan Mehta">
             <div class="name">Aryan Mehta</div>
             <div class="subtitle-row">
-                <span class="subtitle">Content Creator</span>
+                <span class="subtitle"><span id="typing-text"></span><span class="cursor" id="cursor">|</span></span>
                 <span class="status-dot"></span>
                 <span class="status-text">Available</span>
             </div>
             <div class="quote-text" id="quote">Locked in.</div>
+            <div class="countdowns" id="countdowns"></div>
             <div class="bio">@aryoluke &mdash; everything tech &amp; creative</div>
             <div class="live-clock" id="clock">Loading...</div>
             
             <!-- Contact Info -->
             <div class="contact-section">
-                <a class="contact-pill" href="mailto:aryanjigar.jmehta@gmail.com">
+                <a class="contact-pill" href="mailto:aryanjiar.jmehta@gmail.com">
                     <span class="label">&#x1f4e7; aryanjiar.jmehta@gmail.com</span>
                     <span class="arrow">&#x2192;</span>
                 </a>
@@ -496,6 +521,44 @@
     </div>
     
     <script>
+        // Typing Animation - types "Content Creator" letter by letter
+        (function() {
+            const text = "Content Creator";
+            const typingEl = document.getElementById('typing-text');
+            const cursorEl = document.getElementById('cursor');
+            let charIndex = 0;
+            
+            function typeChar() {
+                if (charIndex < text.length) {
+                    typingEl.textContent += text[charIndex];
+                    charIndex++;
+                    setTimeout(typeChar, 80);
+                } else {
+                    setTimeout(function() {
+                        cursorEl.classList.add('done');
+                    }, 1000);
+                }
+            }
+            typeChar();
+        })();
+        
+        // Countdown Timers
+        (function() {
+            function updateCountdowns() {
+                const now = new Date();
+                const year10Target = new Date('2026-09-07T00:00:00');
+                const muscleUpTarget = new Date('2026-08-07T00:00:00');
+                
+                const year10Days = Math.ceil((year10Target - now) / (1000 * 60 * 60 * 24));
+                const muscleUpDays = Math.ceil((muscleUpTarget - now) / (1000 * 60 * 60 * 24));
+                
+                document.getElementById('countdowns').innerHTML =
+                    'Year 10: ' + year10Days + ' days<br>' +
+                    'Muscle up: ' + muscleUpDays + ' days';
+            }
+            updateCountdowns();
+        })();
+        
         // Live Clock - London time, updates every second
         function updateClock() {
             const now = new Date();
@@ -562,10 +625,10 @@
                 this.y = canvas.height + Math.random() * 100;
                 this.size = Math.random() * 4 + 2;
                 this.speed = Math.random() * 0.5 + 0.2;
-                this.hue = Math.floor(Math.random() * 40) + 15; // 15-55 range (orange/gold)
-                this.saturation = Math.floor(Math.random() * 30) + 60; // 60-90%
-                this.lightness = Math.floor(Math.random() * 20) + 50; // 50-70%
-                this.opacity = Math.random() * 0.2 + 0.3; // 0.3-0.5
+                this.hue = Math.floor(Math.random() * 40) + 15;
+                this.saturation = Math.floor(Math.random() * 30) + 60;
+                this.lightness = Math.floor(Math.random() * 20) + 50;
+                this.opacity = Math.random() * 0.2 + 0.3;
             }
             update() {
                 this.y -= this.speed;
