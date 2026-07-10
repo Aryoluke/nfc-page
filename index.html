@@ -317,6 +317,10 @@
             pointer-events: none;
         }
         
+        /* Shooting Stars */
+        .shooting-star{position:fixed;width:2px;height:80px;background:linear-gradient(to bottom,rgba(255,255,255,0.8),transparent);transform:rotate(-35deg);animation:shoot 0.7s linear forwards;z-index:0;pointer-events:none;border-radius:1px}
+        @keyframes shoot{0%{opacity:1;transform:rotate(-35deg) translateX(0) translateY(0)}100%{opacity:0;transform:rotate(-35deg) translateX(-250px) translateY(250px)}}
+        
         /* mobile fine-tune */
         @media (max-width: 480px) {
             .glass-card {
@@ -354,6 +358,7 @@
             <div class="countdowns" id="countdowns"></div>
             <div class="bio">@aryoluke &mdash; everything tech &amp; creative</div>
             <div class="live-clock" id="clock">Loading...</div>
+            <span id="weather" style="display:inline-block;background:rgba(0,0,0,0.3);backdrop-filter:blur(8px);padding:5px 12px;border-radius:16px;font-size:12px;color:#fff;border:1px solid rgba(255,255,255,0.1);margin-top:6px">loading weather...</span>
             
             <!-- Contact Info -->
             <div class="contact-section">
@@ -647,6 +652,12 @@
                 isMuted = !isMuted;
             });
         })();
+        
+        // Shooting Stars
+        (function ss(){var s=document.createElement('div');s.className='shooting-star';s.style.left=Math.random()*85+'%';s.style.top=Math.random()*50+'%';s.style.animationDuration=(0.5+Math.random()*0.6)+'s';document.body.appendChild(s);setTimeout(function(){s.remove()},1500);setTimeout(ss,3500+Math.random()*5000)})();
+        
+        // Live Weather
+        fetch('https://api.open-meteo.com/v1/forecast?latitude=51.62&longitude=-0.32&current_weather=true').then(function(r){return r.json()}).then(function(d){var w=d.current_weather;var codes={0:'☀️',1:'🌤️',2:'🌤️',3:'🌤️',45:'🌫️',48:'🌫️',51:'🌧️',61:'🌧️',63:'🌧️',65:'🌧️',71:'❄️',73:'❄️',95:'⛈️',96:'⛈️',99:'⛈️'};var e=codes[w.weathercode]||'🌤️';document.getElementById('weather').textContent=e+' '+w.temperature+'°C · '+w.windspeed+' km/h'}).catch(function(){document.getElementById('weather').textContent='🌤️ --'});
     </script>
 </body>
 </html>
