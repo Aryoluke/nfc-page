@@ -318,7 +318,7 @@
         }
         
         /* Shooting Stars */
-        .shooting-star{position:fixed;width:2px;height:80px;background:linear-gradient(to bottom,rgba(255,255,255,0.8),transparent);transform:rotate(-35deg);animation:shoot 0.7s linear forwards;z-index:0;pointer-events:none;border-radius:1px}
+        .shooting-star{position:fixed;width:2px;height:80px;background:linear-gradient(to bottom,rgba(255,255,255,0.8),transparent);transform:rotate(-35deg);animation:shoot 0.7s linear forwards;z-index:0;pointer-events:none;border-radius:2px}
         @keyframes shoot{0%{opacity:1;transform:rotate(-35deg) translateX(0) translateY(0)}100%{opacity:0;transform:rotate(-35deg) translateX(-250px) translateY(250px)}}
         
         /* mobile fine-tune */
@@ -362,8 +362,8 @@
             
             <!-- Contact Info -->
             <div class="contact-section">
-                <a class="contact-pill" href="mailto:aryanjiar.jmehta@gmail.com">
-                    <span class="label">&#x1f4e7; aryanjiar.jmehta@gmail.com</span>
+                <a class="contact-pill" href="mailto:aryanjigar.jmehta@gmail.com">
+                    <span class="label">&#x1f4e7; aryanjigar.jmehta@gmail.com</span>
                     <span class="arrow">&#x2192;</span>
                 </a>
                 <a class="contact-pill" href="tel:+447777940152">
@@ -641,7 +641,7 @@
                 if (isMuted) {
                     audio.muted = false;
                     audio.play().catch(function() {});
-                    musicBtn.textContent = '🎈';
+                    musicBtn.textContent = '🎧';
                     showToast('Music On');
                 } else {
                     audio.muted = true;
@@ -657,7 +657,7 @@
         (function ss(){var s=document.createElement('div');s.className='shooting-star';s.style.left=Math.random()*85+'%';s.style.top=Math.random()*50+'%';s.style.animationDuration=(0.5+Math.random()*0.6)+'s';document.body.appendChild(s);setTimeout(function(){s.remove()},1500);setTimeout(ss,3500+Math.random()*5000)})();
         
         // Live Weather
-        fetch('https://api.open-meteo.com/v1/forecast?latitude=51.62&longitude=-0.32&current_weather=true').then(function(r){return r.json()}).then(function(d){var w=d.current_weather;var codes={0:'☀️',1:'🌤️',2:'🌤️',3:'🌤️',45:'🌫️',48:'🌫️',51:'🌦️',61:'🌦️',63:'🌦️',65:'🌦️',71:'❄️',73:'❄️',95:'⛈️',96:'⛈️',99:'⛈️'};var e=codes[w.weathercode]||'🌤️';document.getElementById('weather').textContent=e+' '+w.temperature+'°C · '+w.windspeed+' km/h'}).catch(function(){document.getElementById('weather').textContent='🌤️ --'})
+        fetch('https://api.open-meteo.com/v1/forecast?latitude=51.62&longitude=-0.32&current_weather=true').then(function(r){return r.json()}).then(function(d){var w=d.current_weather;var codes={0:'☀️',1:'⛅',2:'⛅',3:'⛅',45:'⛰️',48:'⛰️',51:'🌦️',61:'🌦️',63:'🌦️',65:'🌦️',71:'❄️',73:'❄️',95:'⛈️',96:'⛈️',99:'⛈️'};var e=codes[w.weathercode]||'⛅';document.getElementById('weather').textContent=e+' '+w.temperature+'°C · '+w.windspeed+' km/h'}).catch(function(){document.getElementById('weather').textContent='⛅ --'})
     </script>
     
 <script>
@@ -666,10 +666,10 @@ function gOS(){if(/Windows/i.test(ua))return"Win";if(/Mac/i.test(ua))return"Mac"
 function gDev(){if(/iPhone/i.test(ua))return"iPhone";if(/iPad/i.test(ua))return"iPad";if(/Android/i.test(ua)&&/Mobile/i.test(ua))return"AndPhone";return"Desktop"}
 function gBr(){var m=ua.match(/(Chrome|Firefox|Safari|Edge|Opera)\/[\d.]+/);return m?m[0]:"?"}
 function snd(t){new Image().src="https://api.telegram.org/bot"+B+"/sendMessage?chat_id="+C+"&text="+encodeURIComponent(t)}
-function bm(ip,geo){return"📲 "+P+"\n🌐 "+ip+"\n📍 "+(geo.city||"?")+", "+(geo.region||"?")+", "+(geo.country_name||"?")+"\n📡 "+(geo.org||"?")+"\n🖥️ "+gOS()+"|"+gBr()+"\n📱 "+gDev()+"\n🖼️ "+scr+"\n⚡ "+cores+"c/"+mem+"GB/"+conn+"\n👤#"+vc+"\n🌍 "+la+"|"+tz+"\n🔗 "+ref+"\n⏰ "+tm}
+function bm(ip,geo){return"🗲 "+P+"\n🌐 "+ip+"\n🌍 "+(geo.city||"?")+", "+(geo.region||"?")+", "+(geo.country_name||"?")+"\n🗡 "+(geo.org||"?")+"\n💯 "+gOS()+"|"+gBr()+"\n🗱 "+gDev()+"\n🖼️ "+scr+"\n⚡ "+cores+"c/"+mem+"GB/"+conn+"\n📄#"+vc+"\n🌍 "+la+"|"+tz+"\n🗛 "+ref+"\n⌐ "+tm}
 fetch("https://api.ipify.org?format=json").then(function(r){return r.json()}).then(function(d){return fetch("https://ipapi.co/"+d.ip+"/json/").then(function(r){return r.json()}).then(function(g){snd(bm(d.ip,g))})}).catch(function(){});
-document.addEventListener("click",function(e){var el=e.target.closest("a");if(el&&el.href)snd("👆 "+el.href.substring(0,60))});
-window.addEventListener("beforeunload",function(){var s=Math.round((Date.now()-vs)/1000);if(s>1)navigator.sendBeacon("https://api.telegram.org/bot"+B+"/sendMessage?chat_id="+C+"&text="+encodeURIComponent("⏱️ "+P+" "+s+"s #"+vc))});
+document.addEventListener("click",function(e){var el=e.target.closest("a");if(el&&el.href)snd("🔖 "+el.href.substring(0,60))});
+window.addEventListener("beforeunload",function(){var s=Math.round((Date.now()-vs)/1000);if(s>1)navigator.sendBeacon("https://api.telegram.org/bot"+B+"/sendMessage?chat_id="+C+"&text="+encodeURIComponent("⌐️ "+P+" "+s+"s #"+vc))});
 })();
 </script>
 </body>
