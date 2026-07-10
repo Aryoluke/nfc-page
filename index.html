@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aryan Mehta</title>
+    <!-- OG Tags -->
+    <meta property="og:title" content="Aryan Mehta">
+    <meta property="og:description" content="Content Creator">
+    <meta property="og:url" content="https://aryoluke.github.io/nfc-page/">
+    <meta property="og:type" content="website">
+    <!-- PWA / Favicon / Theme -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF6B35'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'%3EAM%3C/text%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF6B35'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'%3EAM%3C/text%3E%3C/svg%3E">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -258,6 +269,54 @@
             pointer-events: none;
         }
         
+        /* Splash Screen */
+        #splash.hide { opacity: 0; pointer-events: none; }
+        @keyframes sp { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+        
+        /* Music Toggle & Toast styling */
+        #music-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #music-toggle:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.35);
+            transform: scale(1.05);
+        }
+        #toast {
+            position: fixed;
+            bottom: 80px;
+            right: 24px;
+            z-index: 100;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 8px 16px;
+            color: #fff;
+            font-size: 13px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
         /* mobile fine-tune */
         @media (max-width: 480px) {
             .glass-card {
@@ -270,7 +329,16 @@
     </style>
 </head>
 <body>
+    <!-- Splash Screen -->
+    <div id="splash" style="position:fixed;inset:0;background:#1a1a2e;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.6s ease;"><div style="font-size:72px;font-weight:900;background:linear-gradient(135deg,#FF6B35,#FFD700,#FF6B35);-webkit-background-clip:text;background-clip:text;color:transparent;animation:sp 1.2s ease-in-out infinite;">AM</div></div>
+    
     <canvas id="particles"></canvas>
+    
+    <!-- Music Toggle -->
+    <button id="music-toggle" aria-label="Toggle music">🔇</button>
+    <audio id="bg-music" loop preload="none"><source src="" type="audio/mpeg"></audio>
+    <div id="toast">Music Off</div>
+    
     <div class="container">
         <!-- Profile Card -->
         <div class="glass-card profile">
@@ -380,6 +448,9 @@
     </div>
     
     <script>
+        // Splash screen hide after 1.5s
+        setTimeout(function(){ document.getElementById('splash').classList.add('hide'); }, 1500);
+        
         // Typing Animation - types "Content Creator" letter by letter
         (function() {
             const text = "Content Creator";
@@ -547,6 +618,35 @@
                 card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
             });
         }
+        
+        // Music Toggle - mute/unmute on click
+        (function() {
+            const musicBtn = document.getElementById('music-toggle');
+            const audio = document.getElementById('bg-music');
+            const toast = document.getElementById('toast');
+            let isMuted = true;
+            
+            function showToast(msg) {
+                toast.textContent = msg;
+                toast.style.opacity = '1';
+                setTimeout(function() { toast.style.opacity = '0'; }, 2000);
+            }
+            
+            musicBtn.addEventListener('click', function() {
+                if (isMuted) {
+                    audio.muted = false;
+                    audio.play().catch(function() {});
+                    musicBtn.textContent = '🔊';
+                    showToast('Music On');
+                } else {
+                    audio.muted = true;
+                    audio.pause();
+                    musicBtn.textContent = '🔇';
+                    showToast('Music Off');
+                }
+                isMuted = !isMuted;
+            });
+        })();
     </script>
 </body>
 </html>
