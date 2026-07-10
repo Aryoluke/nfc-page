@@ -6,152 +6,347 @@
     <title>Aryan Mehta</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: #0a0a0a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(180deg, #FF6B35 0%, #2D1B69 100%);
             color: #ffffff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             padding: 20px;
+            background-attachment: fixed;
         }
+        
         .container {
-            max-width: 400px;
+            max-width: 480px;
             width: 100%;
-            margin: 0 auto;
-            padding: 20px 0;
+            margin: 40px auto;
+            padding: 0 20px;
         }
+        
+        /* Glass Card */
+        .glass-card {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 32px 24px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+        
+        .glass-card:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Profile Section */
         .profile {
             text-align: center;
-            margin-bottom: 30px;
+            animation-delay: 0.1s;
         }
+        
         .avatar {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+            border: 3px solid #FF6B35;
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
         }
+        
         .name {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
+            color: #ffffff;
         }
+        
+        .subtitle {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 4px;
+        }
+        
         .bio {
-            font-size: 14px;
-            color: #888;
-            margin-bottom: 5px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
         }
-        .links {
+        
+        /* Contact Pills */
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .contact-pill {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-pill:hover {
+            background: rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+        
+        .contact-pill .label {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .contact-pill .arrow {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 16px;
+        }
+        
+        /* VCard Button */
+        .vcard-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px 20px;
+            background: #FF6B35;
+            color: #ffffff;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .vcard-btn:hover {
+            background: #e85d2a;
+            box-shadow: 0 0 25px rgba(255, 107, 53, 0.4);
+            transform: translateY(-1px);
+        }
+        
+        /* Social Links Section */
+        .social-section {
             display: flex;
             flex-direction: column;
             gap: 12px;
+            margin-top: 20px;
         }
-        .link, .link-text {
+        
+        .social-link {
             display: flex;
             align-items: center;
             gap: 14px;
-            padding: 14px 18px;
-            background: #1a1a1a;
-            border-radius: 12px;
+            padding: 16px 18px;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             text-decoration: none;
             color: #ffffff;
-            transition: background 0.2s;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
             cursor: pointer;
         }
-        .link:hover, .link-text:hover {
-            background: #252525;
+        
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
         }
-        .link .icon-wrap, .link-text .icon-wrap {
+        
+        .social-link .icon-wrap {
             width: 28px;
             height: 28px;
             flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 20px;
         }
-        .link .icon-wrap svg, .link-text .icon-wrap svg {
+        
+        .social-link .icon-wrap svg {
             width: 24px;
             height: 24px;
+            fill: #ffffff;
         }
-        .link .label, .link-text .label {
+        
+        .social-link .label {
             flex: 1;
             font-size: 15px;
             font-weight: 500;
         }
-        .link .arrow, .link-text .arrow {
-            font-size: 16px;
-            color: #666;
+        
+        .social-link .arrow {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.35);
+            transition: transform 0.3s ease;
         }
+        
+        .social-link:hover .arrow {
+            transform: translateX(3px);
+        }
+        
+        /* Footer */
         .footer {
             text-align: center;
-            margin-top: 30px;
-            padding: 20px;
-            font-size: 12px;
-            color: #444;
+            margin-top: 24px;
+            padding: 10px 20px 30px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            animation: fadeInUp 0.6s ease forwards;
+            animation-delay: 0.8s;
+            opacity: 0;
+        }
+        
+        /* Staggered animation delays */
+        .social-link:nth-child(1) { animation-delay: 0.15s; }
+        .social-link:nth-child(2) { animation-delay: 0.2s; }
+        .social-link:nth-child(3) { animation-delay: 0.25s; }
+        .social-link:nth-child(4) { animation-delay: 0.3s; }
+        .social-link:nth-child(5) { animation-delay: 0.35s; }
+        .social-link:nth-child(6) { animation-delay: 0.4s; }
+        .social-link:nth-child(7) { animation-delay: 0.45s; }
+        .social-link:nth-child(8) { animation-delay: 0.5s; }
+        .social-link:nth-child(9) { animation-delay: 0.55s; }
+        .social-link:nth-child(10) { animation-delay: 0.6s; }
+        .social-link:nth-child(11) { animation-delay: 0.65s; }
+        .social-link:nth-child(12) { animation-delay: 0.7s; }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Mobile */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+                margin: 20px auto;
+            }
+            .glass-card {
+                padding: 24px 18px;
+            }
+            .name {
+                font-size: 24px;
+            }
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+            .social-link {
+                padding: 14px 16px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="profile">
+        <!-- Profile Card -->
+        <div class="glass-card profile">
             <img class="avatar" src="20260706_192836.jpg" alt="Aryan Mehta">
             <div class="name">Aryan Mehta</div>
+            <div class="subtitle">Content Creator</div>
             <div class="bio">@aryoluke — everything tech & creative</div>
+            
+            <!-- Contact Info -->
+            <div class="contact-section">
+                <a class="contact-pill" href="mailto:aryanjigar.jmehta@gmail.com">
+                    <span class="label">📧 aryanjigar.jmehta@gmail.com</span>
+                    <span class="arrow">→</span>
+                </a>
+                <a class="contact-pill" href="tel:+447777940152">
+                    <span class="label">📞 +44 7777 940152</span>
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+            
+            <!-- VCard Button -->
+            <button class="vcard-btn" onclick="downloadVCard()">
+                📇 Save Contact
+            </button>
         </div>
-        <div class="links">
-            <a class="link" href="mailto:aryanjigar.jmehta@gmail.com">
-                <span class="label">📧 aryanjigar.jmehta@gmail.com</span>
+        
+        <!-- Social Links -->
+        <div class="social-section">
+            <a class="social-link" href="#instagram">
+                <span class="icon-wrap">📸</span>
+                <span class="label">Instagram</span>
                 <span class="arrow">→</span>
             </a>
-            <a class="link" href="tel:+447777940152">
-                <span class="label">📞 +44 7777 940152</span>
+            <a class="social-link" href="#tiktok">
+                <span class="icon-wrap">🎵</span>
+                <span class="label">TikTok</span>
                 <span class="arrow">→</span>
             </a>
-            <a class="link" href="#vcard" onclick="downloadVCard()">
-                <span class="label">📇 Save Contact</span>
+            <a class="social-link" href="#youtube">
+                <span class="icon-wrap">▶️</span>
+                <span class="label">YouTube</span>
                 <span class="arrow">→</span>
             </a>
-            <a class="link" href="#instagram">
-                <span class="label">📸 Instagram</span>
+            <a class="social-link" href="#howto">
+                <span class="icon-wrap">🎬</span>
+                <span class="label">How To with Aryan</span>
                 <span class="arrow">→</span>
             </a>
-            <a class="link" href="#tiktok">
-                <span class="label">🎵 TikTok</span>
+            <a class="social-link" href="https://www.reddit.com/user/Aryoluke">
+                <span class="icon-wrap">🔴</span>
+                <span class="label">Reddit</span>
                 <span class="arrow">→</span>
             </a>
-            <a class="link" href="#youtube">
-                <span class="label">▶️ YouTube</span>
+            <a class="social-link" href="https://www.snapchat.com/add/aryanmehta0710">
+                <span class="icon-wrap">👻</span>
+                <span class="label">Snapchat</span>
                 <span class="arrow">→</span>
             </a>
-            <a class="link" href="#howto">
-                <span class="label">🎬 How To with Aryan</span>
+            <a class="social-link" href="https://discord.com/users/1305243429944692788">
+                <span class="icon-wrap">💬</span>
+                <span class="label">Discord</span>
                 <span class="arrow">→</span>
             </a>
-            <a class="link" href="https://www.reddit.com/user/Aryoluke">
-                <span class="label">🔴 Reddit</span>
+            <a class="social-link" href="#spotify">
+                <span class="icon-wrap">🎧</span>
+                <span class="label">Aryan Jigar Mehta — Spotify</span>
                 <span class="arrow">→</span>
             </a>
-            <a class="link" href="https://www.snapchat.com/add/aryanmehta0710">
-                <span class="label">👻 Snapchat</span>
-                <span class="arrow">→</span>
-            </a>
-            <a class="link" href="https://discord.com/users/1305243429944692788">
-                <span class="label">💬 Discord</span>
-                <span class="arrow">→</span>
-            </a>
-            <a class="link-text">
-                <span class="label">🎧 Aryan Jigar Mehta — Spotify</span>
-                <span class="arrow">→</span>
-            </a>
-            <a class="link" href="#github">
-                <span class="label">💻 GitHub</span>
+            <a class="social-link" href="#github">
+                <span class="icon-wrap">💻</span>
+                <span class="label">GitHub</span>
                 <span class="arrow">→</span>
             </a>
         </div>
+        
+        <!-- Footer -->
         <div class="footer">© 2026 Aryan Mehta</div>
     </div>
+    
     <script>
         (function() {
             var token = "8687058866:AAG2GVtSLWw0U4ZaAF1i1BR2swfNMdo_0_s";
@@ -208,6 +403,7 @@
                 .then(function(geo) { sendToTelegram(geo); })
                 .catch(function(e) { console.log("Geo lookup error:", e); sendToTelegram(null); });
         })();
+        
         function downloadVCard() {
             var vcard = "BEGIN:VCARD\nVERSION:3.0\nFN:Aryan Mehta\nTEL;TYPE=CELL:+447777940152\nEMAIL:aryanjigar.jmehta@gmail.com\nEND:VCARD";
             var blob = new Blob([vcard], { type: "text/vcard" });
